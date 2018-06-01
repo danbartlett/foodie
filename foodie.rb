@@ -167,14 +167,20 @@ class Meal
   end
 
   def summary
+    @all_ingredients.each do |quantity|
+      puts "#{quantity.amount}g of #{quantity.ingredient.name}: #{quantity.calories} cals"
+      puts quantity.summary; puts
+    end
+    puts
+
     rows = []
     rows << ['Calories', "#{calories} kcal"]
-    rows << ['Carbs', "#{carbohydrate_percentage.round}%"]
-    rows << ['Sugar', "#{sugar_percentage.round}%"]
-    rows << ['Fat', "#{fat_percentage.round}%"]
-    rows << ['Protein', "#{protein_percentage.round}%"]
-    rows << ['Fibre', "#{fibre_percentage.round}%"]
-    Terminal::Table.new rows: rows, title: self.name
+    rows << ['Carbs', "#{carbohydrate}g", "#{carbohydrate_percentage.round}%"]
+    rows << ['Sugar', "#{sugar}g", "#{sugar_percentage.round}%"]
+    rows << ['Fat', "#{fat}g", "#{fat_percentage.round}%"]
+    rows << ['Protein', "#{protein}g", "#{protein_percentage.round}%"]
+    rows << ['Fibre', "#{fibre}g", "#{fibre_percentage.round}%"]
+    Terminal::Table.new rows: rows, title: 'Meal'
   end
 end
 
