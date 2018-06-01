@@ -118,13 +118,7 @@ class Meal
     ingredients.each do |ingredient|
       name, amount = ingredient.split(',')
       ingredient_model = Ingredient.first(Sequel.like(:name, "#{name}%"))
-      @all_ingredients << ingredient_model
-      amount_in_db = ingredient_model.weight
-      amount_we_want = amount.to_i
-
-      # Calculate ratio of quantity specified, to the quantity we have saved in
-      # the database
-      difference = amount_we_want.fraction_of amount_in_db
+      @all_ingredients << IngredientQuantity.new(ingredient: ingredient_model, amount: amount)
     end
   end
 
