@@ -111,13 +111,17 @@ class IngredientQuantity
     rows << ['Fat', "#{fat}g"]
     rows << ['Protein', "#{protein}g"]
     rows << ['Fibre', "#{fibre}g"]
-    Terminal::Table.new rows: rows, title: "#{@amount} #{@unit} of #{@ingredient.name}"
+    Terminal::Table.new rows: rows, title: "#{@amount} #{@ingredient.unit} of #{@ingredient.name}"
   end
 end
 
 class Meal
-  def initialize(*ingredients)
+  attr_reader :name
+
+  def initialize(name:, ingredients:)
     @all_ingredients = []
+    @name = name
+
     ingredients.each do |ingredient|
       name, amount = ingredient.split(',')
       ingredient_model = Ingredient.first(Sequel.like(:name, "#{name}%"))
