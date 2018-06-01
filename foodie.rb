@@ -246,7 +246,7 @@ class Day
   def summary
     summary_table = Terminal::Table.new(title: "Meals for #{Time.now.strftime("%A, %b %d %Y")}", headings: ['Name', 'Calories', 'Carbs', 'Sugar', 'Fat', 'Protein', 'Fibre']) do |t|
       @all_meals.each do |meal|
-        t.add_row [meal.name, meal.calories.round, "#{meal.carbohydrate.round}g", "#{meal.sugar.round}g", "#{meal.fat}g", "#{meal.protein}g", "#{meal.fibre}g"]
+        t.add_row [meal.name, meal.calories.round, "#{meal.carbohydrate.round}g", "#{meal.sugar.round}g", "#{meal.fat.round}g", "#{meal.protein.round}g", "#{meal.fibre.round}g"]
       end
       t.add_separator
       t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{sugar.round}g", "#{fat.round}g", "#{protein.round}g", "#{fibre.round}g"]
