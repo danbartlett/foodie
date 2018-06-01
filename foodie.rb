@@ -146,6 +146,26 @@ class Meal
     @all_ingredients.map(&:protein).sum
   end
 
+  def protein_percentage
+    self.protein * 4 / self.calories * 100
+  end
+
+  def carbohydrate_percentage
+    self.carbohydrate * 4 / self.calories * 100
+  end
+
+  def sugar_percentage
+    self.sugar * 4 / self.calories * 100
+  end
+
+  def fat_percentage
+    self.fat * 9 / self.calories * 100
+  end
+
+  def fibre_percentage
+    self.fibre * 9 / self.calories * 100
+  end
+
   def summary
     rows = []
     rows << ['Calories', "#{calories} kcal"]
