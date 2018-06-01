@@ -103,6 +103,10 @@ class IngredientQuantity
     @ingredient.protein * @multiplier
   end
 
+  def to_s
+    "#{amount} #{ingredient.unit} of #{ingredient.name}"
+  end
+
   def summary
     rows = []
     rows << ['Calories', "#{calories} kcal"]
