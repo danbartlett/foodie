@@ -1,6 +1,14 @@
-Name,Brand,Amount,Unit,Calories,Protein,Carbohydrate,Of which sugars,Fat,Fibre,Product link
-Porridge oats,Tesco Scottish Oats Porridge,50,g,181,5.15,30.25,0.6,3.5,4.15,https://www.tesco.com/groceries/en-GB/products/254853776
-Fage 0%,Fage 0% Total,100,g,54,10.3,3,3,0,0,https://www.tesco.com/groceries/en-GB/products/268279288
-Huel Powder,V2.2,100,g,402,29.6,37.5,0.9,12.9,7.1,
-Choc milk,Tesco Chocolate Milk,200,ml,129,8,17.6,17.4,3,0,https://www.tesco.com/groceries/en-GB/products/259281275
-Soreen,Soreen Fruity Sliced Malt Loaf,1,slice,65,1.8,12.5,4.5,0.6,0.8,https://www.tesco.com/groceries/en-GB/products/251923641
+Name,Brand,Amount,Unit,Calories,Protein,Carbohydrate,Of which sugars,Fat,Fibre,Salt,Product link
+Porridge oats,Tesco Scottish Oats Porridge,50,g,181,5.15,30.25,0.6,3.5,4.15,,https://www.tesco.com/groceries/en-GB/products/254853776
+Fage 0%,Fage 0% Total,100,g,54,10.3,3,3,0,0,,https://www.tesco.com/groceries/en-GB/products/268279288
+Huel Powder,V2.2,100,g,402,29.6,37.5,0.9,12.9,7.1,,
+Choc milk,Tesco Chocolate Milk,200,ml,129,8,17.6,17.4,3,0,,https://www.tesco.com/groceries/en-GB/products/259281275
+Soreen,Soreen Fruity Sliced Malt Loaf,1,slice,65,1.8,12.5,4.5,0.6,0.8,,https://www.tesco.com/groceries/en-GB/products/251923641
+Alpro Coconut and Almond,Alpro Coconut Almond Fresh Milk Alternative,100,ml,24,0.3,2.6,2.5,1.3,0,,https://www.tesco.com/groceries/en-GB/products/287937656
+Rego,SIS Rego,50,g,184,20,23,5.1,1.3,0.3,0.5,
+Cacao nibs,Sevenhills Fairtrade Raw Cacao Nibs,100,g,604,13,18.2,1,50.3,13.4,0.3,
+Chia seeds,Sevenhills Chia Seeds,100,g,448,22.9,0.9,0.8,31.8,33.1,0,
+Almonds,Zeina Raw Almonds,100,g,612,21.1,6.9,4.2,55.8,7.4,0,http://zeinafoods.com/shop/zeina-raw-almonds/
+Banana,Tesco Organic Bananas,1,banana (150g),154,1.8,34.8,31.4,0.5,1.7,0,
+Sourdough bread,Toasted Sourdough bread,100,g,230,7.8,46.6,0.9,0.7,2.9,0.8,Guess: https://www.waitrose.com/ecom/products/waitrose-1-white-sourdough-bread/493513-373129-373130
+Chilli,Homemade Chilli con Carne (5% beef),100,g,104,8,8.6,2.51,4.2,2.7,0.4,Guess: https://www.fatsecret.com/calories-nutrition/generic/chili-con-carne?portionid=50872&portionamount=100.000
