@@ -3,6 +3,8 @@ require 'csv'
 require 'pry'
 require 'terminal-table'
 
+class IngredientNotFound < StandardError; end
+
 class Numeric
   def fraction_of(n)
     self.to_f / n.to_f
@@ -119,6 +121,8 @@ class Meal
     ingredients.each do |ingredient|
       name, amount = ingredient.split(',')
       ingredient_model = Ingredient.first(Sequel.like(:name, "#{name}%"))
+      raise IngredientNotFound, "#{name} not found!" unless ingredient_model
+
       @all_ingredients << IngredientQuantity.new(ingredient: ingredient_model, amount: amount)
     end
   end
