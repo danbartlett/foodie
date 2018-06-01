@@ -58,6 +58,54 @@ class Ingredient < Sequel::Model
   end
 end
 
+class Meal
+  def initialize(*ingredients)
+    @all_ingredients = []
+    ingredients.each do |ingredient|
+      name, amount = ingredient.split(',')
+      ingredient_model = Ingredient.first(Sequel.like(:name, "#{name}%"))
+      @all_ingredients << ingredient_model
+      amount_in_db = ingredient_model.weight
+      amount_we_want = amount.to_i
+    end
+  end
+
+  def calories
+    @all_ingredients.map(&:calories).sum
+  end
+
+  def carbohydrate
+    @all_ingredients.map(&:carbohydrate).sum
+  end
+
+  def sugar
+    @all_ingredients.map(&:sugar).sum
+  end
+
+  def fat
+    @all_ingredients.map(&:fat).sum
+  end
+
+  def fibre
+    @all_ingredients.map(&:fibre).sum
+  end
+
+  def protein
+    @all_ingredients.map(&:protein).sum
+  end
+
+  def summary
+    rows = []
+    rows << ['Calories', "#{calories} kcal"]
+    rows << ['Carbs', "#{carbohydrate_percentage.round}%"]
+    rows << ['Sugar', "#{sugar_percentage.round}%"]
+    rows << ['Fat', "#{fat_percentage.round}%"]
+    rows << ['Protein', "#{protein_percentage.round}%"]
+    rows << ['Fibre', "#{fibre_percentage.round}%"]
+    Terminal::Table.new rows: rows, title: self.name
+  end
+end
+
 # Load all ingredients from CSV
 CSV.foreach("database.csv", headers: true) do |row|
   Ingredient.create(
