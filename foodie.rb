@@ -185,7 +185,71 @@ class Meal
     rows << ['Fat', "#{fat}g", "#{fat_percentage.round}%"]
     rows << ['Protein', "#{protein}g", "#{protein_percentage.round}%"]
     rows << ['Fibre', "#{fibre}g", "#{fibre_percentage.round}%"]
-    Terminal::Table.new rows: rows, title: 'Meal'
+    Terminal::Table.new rows: rows, title: name
+  end
+end
+
+class Day
+  def initialize(*meals)
+    @all_meals = meals
+  end
+
+  def calories
+    @all_meals.map(&:calories).sum
+  end
+
+  def carbohydrate
+    @all_meals.map(&:carbohydrate).sum
+  end
+
+  def sugar
+    @all_meals.map(&:sugar).sum
+  end
+
+  def fat
+    @all_meals.map(&:fat).sum
+  end
+
+  def fibre
+    @all_meals.map(&:fibre).sum
+  end
+
+  def protein
+    @all_meals.map(&:protein).sum
+  end
+
+  def protein_percentage
+    self.protein * 4 / self.calories * 100
+  end
+
+  def carbohydrate_percentage
+    self.carbohydrate * 4 / self.calories * 100
+  end
+
+  def sugar_percentage
+    self.sugar * 4 / self.calories * 100
+  end
+
+  def fat_percentage
+    self.fat * 9 / self.calories * 100
+  end
+
+  def fibre_percentage
+    self.fibre * 9 / self.calories * 100
+  end
+
+  def summary
+    summary_table = Terminal::Table.new(title: "Meals for #{Time.now.strftime("%A, %b %d %Y")}", headings: ['Name', 'Calories', 'Carbs', 'Sugar', 'Fat', 'Protein', 'Fibre']) do |t|
+      @all_meals.each do |meal|
+        t.add_row [meal.name, meal.calories.round, "#{meal.carbohydrate.round}g", "#{meal.sugar.round}g", "#{meal.fat}g", "#{meal.protein}g", "#{meal.fibre}g"]
+      end
+      t.add_separator
+      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{sugar.round}g", "#{fat.round}g", "#{protein.round}g", "#{fibre.round}g"]
+      t.add_separator
+      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{sugar_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{fibre_percentage.round}%"]
+    end
+
+    summary_table
   end
 end
 
