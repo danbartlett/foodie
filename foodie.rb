@@ -3,6 +3,12 @@ require 'csv'
 require 'pry'
 require 'terminal-table'
 
+class Numeric
+  def fraction_of(n)
+    self.to_f / n.to_f
+  end
+end
+
 DB = Sequel.sqlite # memory database, requires sqlite3
 
 DB.create_table :ingredients do
@@ -67,6 +73,10 @@ class Meal
       @all_ingredients << ingredient_model
       amount_in_db = ingredient_model.weight
       amount_we_want = amount.to_i
+
+      # Calculate ratio of quantity specified, to the quantity we have saved in
+      # the database
+      difference = amount_we_want.fraction_of amount_in_db
     end
   end
 
