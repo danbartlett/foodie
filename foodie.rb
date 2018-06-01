@@ -180,20 +180,17 @@ class Meal
   end
 
   def summary
-    @all_ingredients.each do |quantity|
-      puts "#{quantity.amount} #{quantity.ingredient.unit} of #{quantity.ingredient.name}: #{quantity.calories} cals"
-      puts quantity.summary; puts
+    summary_table = Terminal::Table.new(title: "Ingredients for #{name}", headings: ['Ingredient', 'Calories', 'Carbs', 'Sugar', 'Fat', 'Protein', 'Fibre']) do |t|
+      @all_ingredients.each do |ingredient|
+        t.add_row [ingredient.to_s, ingredient.calories.round, "#{ingredient.carbohydrate.round}g", "#{ingredient.sugar.round}g", "#{ingredient.fat.round}g", "#{ingredient.protein.round}g", "#{ingredient.fibre.round}g"]
+      end
+      t.add_separator
+      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{sugar.round}g", "#{fat.round}g", "#{protein.round}g", "#{fibre.round}g"]
+      t.add_separator
+      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{sugar_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{fibre_percentage.round}%"]
     end
-    puts
 
-    rows = []
-    rows << ['Calories', "#{calories} kcal"]
-    rows << ['Carbs', "#{carbohydrate}g", "#{carbohydrate_percentage.round}%"]
-    rows << ['Sugar', "#{sugar}g", "#{sugar_percentage.round}%"]
-    rows << ['Fat', "#{fat}g", "#{fat_percentage.round}%"]
-    rows << ['Protein', "#{protein}g", "#{protein_percentage.round}%"]
-    rows << ['Fibre', "#{fibre}g", "#{fibre_percentage.round}%"]
-    Terminal::Table.new rows: rows, title: name
+    summary_table
   end
 end
 
