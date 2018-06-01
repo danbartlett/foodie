@@ -16,7 +16,8 @@ DB.create_table :ingredients do
   String :name
   String :brand
   String :product_link
-  Integer :weight
+  Integer :amount
+  String :unit
   Integer :calories
   Float :carbohydrate
   Float :sugar
@@ -71,8 +72,8 @@ class IngredientQuantity
     @ingredient = ingredient
     @amount = amount
 
-    if amount && amount != ingredient.weight
-      @multiplier = amount.to_i.fraction_of ingredient.weight
+    if amount && amount != ingredient.amount
+      @multiplier = amount.to_i.fraction_of ingredient.amount
     end
   end
 
@@ -108,7 +109,7 @@ class IngredientQuantity
     rows << ['Fat', "#{fat}g"]
     rows << ['Protein', "#{protein}g"]
     rows << ['Fibre', "#{fibre}g"]
-    Terminal::Table.new rows: rows, title: "#{@amount}g of #{@ingredient.name}"
+    Terminal::Table.new rows: rows, title: "#{@amount} #{@unit} of #{@ingredient.name}"
   end
 end
 
@@ -168,7 +169,7 @@ class Meal
 
   def summary
     @all_ingredients.each do |quantity|
-      puts "#{quantity.amount}g of #{quantity.ingredient.name}: #{quantity.calories} cals"
+      puts "#{quantity.amount} #{quantity.ingredient.unit} of #{quantity.ingredient.name}: #{quantity.calories} cals"
       puts quantity.summary; puts
     end
     puts
@@ -189,14 +190,15 @@ CSV.foreach("database.csv", headers: true) do |row|
   Ingredient.create(
     name: row[0],
     brand: row[1],
-    weight: row[2],
-    calories: row[3],
-    protein: row[4],
-    carbohydrate: row[5],
-    sugar: row[6],
-    fat: row[7],
-    fibre: row[8],
-    product_link: row[9]
+    amount: row[2],
+    unit: row[3],
+    calories: row[4],
+    protein: row[5],
+    carbohydrate: row[6],
+    sugar: row[7],
+    fat: row[8],
+    fibre: row[9],
+    product_link: row[10]
   )
 end
 
