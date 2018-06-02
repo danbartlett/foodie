@@ -3,14 +3,6 @@ require 'csv'
 require 'pry'
 require 'terminal-table'
 
-class IngredientNotFound < StandardError; end
-
-class Numeric
-  def fraction_of(n)
-    self.to_f / n.to_f
-  end
-end
-
 DB = Sequel.sqlite # memory database, requires sqlite3
 
 DB.create_table :ingredients do
@@ -29,64 +21,13 @@ DB.create_table :ingredients do
 end
 
 require_relative './models/ingredient.rb'
+require_relative './models/quantity.rb'
 
 class IngredientNotFound < StandardError; end
 
 class Numeric
   def fraction_of(n)
     self.to_f / n.to_f
-  end
-end
-
-class IngredientQuantity
-  attr_reader :amount, :ingredient
-
-  def initialize(ingredient:, amount:)
-    @ingredient = ingredient
-    @amount = amount
-
-    if amount && amount != ingredient.amount
-      @multiplier = amount.to_i.fraction_of ingredient.amount
-    end
-  end
-
-  def calories
-    @ingredient.calories * @multiplier
-  end
-
-  def carbohydrate
-    @ingredient.carbohydrate * @multiplier
-  end
-
-  def sugar
-    @ingredient.sugar * @multiplier
-  end
-
-  def fat
-    @ingredient.fat * @multiplier
-  end
-
-  def fibre
-    @ingredient.fibre * @multiplier
-  end
-
-  def protein
-    @ingredient.protein * @multiplier
-  end
-
-  def to_s
-    "#{amount} #{ingredient.unit} of #{ingredient.name}"
-  end
-
-  def summary
-    rows = []
-    rows << ['Calories', "#{calories} kcal"]
-    rows << ['Carbs', "#{carbohydrate}g"]
-    rows << ['Sugar', "#{sugar}g"]
-    rows << ['Fat', "#{fat}g"]
-    rows << ['Protein', "#{protein}g"]
-    rows << ['Fibre', "#{fibre}g"]
-    Terminal::Table.new rows: rows, title: "#{@amount} #{@ingredient.unit} of #{@ingredient.name}"
   end
 end
 
@@ -102,7 +43,7 @@ class Meal
       ingredient_model = Ingredient.first(Sequel.like(:name, "#{name}%"))
       raise IngredientNotFound, "#{name} not found!" unless ingredient_model
 
-      @all_ingredients << IngredientQuantity.new(ingredient: ingredient_model, amount: amount)
+      @all_ingredients << Quantity.new(ingredient: ingredient_model, amount: amount)
     end
   end
 
