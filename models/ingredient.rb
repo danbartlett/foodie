@@ -6,7 +6,7 @@ class Ingredient < Sequel::Model
     errors.add(:fibre, "can't be empty") if fibre.nil?
   end
 
-  def macros
+  def summary
     rows = []
     rows << ['Carbs', "#{carbohydrate_percentage.round}%"]
     rows << ['Sugar', "#{sugar_percentage.round}%"]
