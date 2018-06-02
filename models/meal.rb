@@ -1,7 +1,10 @@
-require_relative '../lib/macros'
+require_relative '../lib/macro_aggregates'
+require_relative '../lib/macro_percentages'
 
 class Meal
-  include Macros
+  include MacroAggregates
+  include MacroPercentages
+
   attr_reader :name
 
   def initialize(name:, ingredients:)

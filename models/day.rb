@@ -1,7 +1,9 @@
-require_relative '../lib/macros'
+require_relative '../lib/macro_aggregates'
+require_relative '../lib/macro_percentages'
 
 class Day
-  include Macros
+  include MacroAggregates
+  include MacroPercentages
 
   def initialize(*meals)
     @foods = meals
