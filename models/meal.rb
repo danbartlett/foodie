@@ -1,11 +1,12 @@
 require_relative '../lib/macro_aggregates'
 require_relative '../lib/macro_percentages'
+require_relative '../lib/summary_table'
 
 class Meal
   include MacroAggregates
   include MacroPercentages
 
-  attr_reader :name
+  attr_reader :name, :foods
 
   def initialize(name:, ingredients:)
     @foods = []
@@ -21,16 +22,6 @@ class Meal
   end
 
   def summary
-    summary_table = Terminal::Table.new(title: "Ingredients for #{name}", headings: ['Ingredient', 'Calories', 'Carbs', 'Fat', 'Protein', 'Sugar', 'Fibre']) do |t|
-      @foods.each do |ingredient|
-        t.add_row [ingredient.to_s, ingredient.calories.round, "#{ingredient.carbohydrate.round}g", "#{ingredient.fat.round}g", "#{ingredient.protein.round}g", "#{ingredient.sugar.round}g", "#{ingredient.fibre.round}g"]
-      end
-      t.add_separator
-      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{fat.round}g", "#{protein.round}g", "#{sugar.round}g", "#{fibre.round}g"]
-      t.add_separator
-      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{sugar_percentage.round}%", "#{fibre_percentage.round}%"]
-    end
-
-    summary_table
+    SummaryTable.new(klass: self, title: "Ingredients for #{name}").table
   end
 end
