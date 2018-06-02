@@ -21,6 +21,10 @@ class Meal
     end
   end
 
+  def to_s
+    name
+  end
+
   def summary
     SummaryTable.new(klass: self, title: "Ingredients for #{name}").table
   end
