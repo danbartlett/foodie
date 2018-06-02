@@ -24,22 +24,22 @@ module Macros
   end
 
   def protein_percentage
-    self.protein * 4 / self.calories * 100
+    protein * 4 / calories * 100
   end
 
   def carbohydrate_percentage
-    self.carbohydrate * 4 / self.calories * 100
+    carbohydrate * 4 / calories * 100
   end
 
   def sugar_percentage
-    self.sugar * 4 / self.calories * 100
+    sugar * 4 / calories * 100
   end
 
   def fat_percentage
-    self.fat * 9 / self.calories * 100
+    fat * 9 / calories * 100
   end
 
   def fibre_percentage
-    self.fibre * 9 / self.calories * 100
+    fibre * 9 / calories * 100
   end
 end
