@@ -180,14 +180,14 @@ class Meal
   end
 
   def summary
-    summary_table = Terminal::Table.new(title: "Ingredients for #{name}", headings: ['Ingredient', 'Calories', 'Carbs', 'Sugar', 'Fat', 'Protein', 'Fibre']) do |t|
+    summary_table = Terminal::Table.new(title: "Ingredients for #{name}", headings: ['Ingredient', 'Calories', 'Carbs', 'Fat', 'Protein', 'Sugar', 'Fibre']) do |t|
       @all_ingredients.each do |ingredient|
-        t.add_row [ingredient.to_s, ingredient.calories.round, "#{ingredient.carbohydrate.round}g", "#{ingredient.sugar.round}g", "#{ingredient.fat.round}g", "#{ingredient.protein.round}g", "#{ingredient.fibre.round}g"]
+        t.add_row [ingredient.to_s, ingredient.calories.round, "#{ingredient.carbohydrate.round}g", "#{ingredient.fat.round}g", "#{ingredient.protein.round}g", "#{ingredient.sugar.round}g", "#{ingredient.fibre.round}g"]
       end
       t.add_separator
-      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{sugar.round}g", "#{fat.round}g", "#{protein.round}g", "#{fibre.round}g"]
+      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{fat.round}g", "#{protein.round}g", "#{sugar.round}g", "#{fibre.round}g"]
       t.add_separator
-      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{sugar_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{fibre_percentage.round}%"]
+      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{sugar_percentage.round}%", "#{fibre_percentage.round}%"]
     end
 
     summary_table
@@ -244,14 +244,14 @@ class Day
   end
 
   def summary
-    summary_table = Terminal::Table.new(title: "Meals for #{Time.now.strftime("%A, %b %d %Y")}", headings: ['Name', 'Calories', 'Carbs', 'Sugar', 'Fat', 'Protein', 'Fibre']) do |t|
+    summary_table = Terminal::Table.new(title: "Meals for #{Time.now.strftime("%A, %b %d %Y")}", headings: ['Name', 'Calories', 'Carbs', 'Fat', 'Protein', 'Sugar', 'Fibre']) do |t|
       @all_meals.each do |meal|
-        t.add_row [meal.name, meal.calories.round, "#{meal.carbohydrate.round}g", "#{meal.sugar.round}g", "#{meal.fat.round}g", "#{meal.protein.round}g", "#{meal.fibre.round}g"]
+        t.add_row [meal.name, meal.calories.round, "#{meal.carbohydrate.round}g", "#{meal.fat.round}g", "#{meal.protein.round}g", "#{meal.sugar.round}g", "#{meal.fibre.round}g"]
       end
       t.add_separator
-      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{sugar.round}g", "#{fat.round}g", "#{protein.round}g", "#{fibre.round}g"]
+      t.add_row ['TOTALS', calories.round, "#{carbohydrate.round}g", "#{fat.round}g", "#{protein.round}g", "#{sugar.round}g", "#{fibre.round}g"]
       t.add_separator
-      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{sugar_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{fibre_percentage.round}%"]
+      t.add_row ["MACRO %s", '-', "#{carbohydrate_percentage.round}%", "#{fat_percentage.round}%", "#{protein_percentage.round}%", "#{sugar_percentage.round}%", "#{fibre_percentage.round}%"]
     end
 
     summary_table
