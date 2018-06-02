@@ -1,5 +1,3 @@
-require 'sequel'
-
 class Ingredient < Sequel::Model
   def validate
     super
