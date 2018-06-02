@@ -50,6 +50,4 @@ CSV.foreach("database.csv", headers: true) do |row|
   )
 end
 
-Ingredient.all.each do |ingredient|
-  puts ingredient.macros; puts
-end
+require_relative './log.rb'
