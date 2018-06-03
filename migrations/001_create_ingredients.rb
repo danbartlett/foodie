@@ -13,6 +13,9 @@ Sequel.migration do
       Float :fat, null: false
       Float :protein, null: false
       Float :fibre, null: false
+
+      DateTime :created_at, null: false
+      DateTime :updated_at
     end
   end
 end

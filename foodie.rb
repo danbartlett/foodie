@@ -5,6 +5,10 @@ require 'terminal-table'
 
 DB = Sequel.connect 'postgres://postgres:@localhost:5432/foodie_development'
 
+# Enable automatic timestamp updates on all models,
+# if created_at & updated_at columns exist
+Sequel::Model.plugin :timestamps
+
 require_relative './models/ingredient.rb'
 require_relative './models/quantity.rb'
 require_relative './models/meal.rb'
