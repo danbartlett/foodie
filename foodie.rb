@@ -3,7 +3,7 @@ require 'csv'
 require 'pry'
 require 'terminal-table'
 
-DB = Sequel.sqlite # memory database, requires sqlite3
+DB = Sequel.connect 'postgres://postgres:@localhost:5432/foodie_development'
 
 DB.create_table :ingredients do
   primary_key :id
