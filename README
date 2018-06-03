@@ -1,0 +1,8 @@
+# Install
+
+* `bundle`
+* `ruby foodie.rb`
+
+# Run migrations
+
+* `sequel -m migrations/ postgres://localhost/foodie_development`
