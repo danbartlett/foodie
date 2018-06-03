@@ -30,7 +30,19 @@ puts peaches.summary
 costa = Meal.new(name: 'Costa chicken sandwich and granola', ingredients: ['Costa chicken salad sandwich,1', 'Costa granola square,1'])
 puts costa.summary
 
-saturday = Day.new(scrambled_eggs, peaches, costa)
+lebanese_lunch = Meal.new(name: 'Lamb koftas, houmous & cous cous', ingredients: ['Lamb koftas,120', 'Moroccan cous cous,150', 'Reduced fat houmous,60'])
+puts lebanese_lunch.summary
+
+hot_choc = Meal.new(name: 'Hot choc', ingredients: ['Hot choc,14.5'])
+
+bbq = Meal.new(name: 'BBQ', ingredients: ['Chicken kebab,4', 'Pork belly,200', 'Creamy coleslaw,75', 'Heineken,1'])
+puts bbq.summary
+
+hot_choc_2 = Meal.new(name: 'Hot choc', ingredients: ['Hot choc,14.5'])
+saturday = Day.new(scrambled_eggs, peaches, costa, lebanese_lunch, hot_choc, bbq, hot_choc_2)
 puts saturday.summary
+
+test = Meal.new(name: 'Hot choc', ingredients: ['Fage,100', 'Almonds,50'])
+puts test.summary
 
 
