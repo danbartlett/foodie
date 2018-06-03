@@ -14,7 +14,7 @@ Sequel.migration do
       Float :protein, null: false
       Float :fibre, null: false
 
-      DateTime :created_at, null: false
+      DateTime :created_at
       DateTime :updated_at
     end
   end
