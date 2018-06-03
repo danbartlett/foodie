@@ -5,21 +5,6 @@ require 'terminal-table'
 
 DB = Sequel.connect 'postgres://postgres:@localhost:5432/foodie_development'
 
-DB.create_table :ingredients do
-  primary_key :id
-  String :name
-  String :brand
-  String :product_link
-  Integer :amount
-  String :unit
-  Integer :calories
-  Float :carbohydrate
-  Float :sugar
-  Float :fat
-  Float :protein
-  Float :fibre
-end
-
 require_relative './models/ingredient.rb'
 require_relative './models/quantity.rb'
 require_relative './models/meal.rb'
