@@ -2,27 +2,22 @@ require_relative '../lib/macro_aggregates'
 require_relative '../lib/macro_percentages'
 require_relative '../lib/summary_table'
 
-class Meal
+class Meal < Sequel::Model
   include MacroAggregates
   include MacroPercentages
 
-  attr_reader :name, :foods
-
-  def initialize(name:, ingredients:)
-    @foods = []
-    @name = name
-
-    ingredients.each do |ingredient|
-      name, amount = ingredient.split(',')
-      ingredient_model = Ingredient.first(Sequel.like(:name, "#{name}%"))
-      raise IngredientNotFound, "#{name} not found!" unless ingredient_model
-
-      @foods << Quantity.new(ingredient: ingredient_model, amount: amount)
-    end
-  end
+  one_to_many :quantities
 
   def to_s
     name
+  end
+
+  def foods
+    quantities
+  end
+
+  def add_new(ingredient, quantity)
+    Quantity.create(meal_id: self.id, ingredient_id: ingredient.id, quantity: quantity)
   end
 
   def summary
