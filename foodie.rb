@@ -13,6 +13,7 @@ require_relative './models/ingredient.rb'
 require_relative './models/quantity.rb'
 require_relative './models/meal.rb'
 require_relative './models/day.rb'
+require_relative './models/meta.rb'
 
 class IngredientNotFound < StandardError; end
 
