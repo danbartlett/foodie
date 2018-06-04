@@ -49,9 +49,9 @@ add_to_db(
   date: today
 )
 meals = Meal.where(created_at: today)
+Meta.create(date: today, garmin_total_calories: 2804, garmin_active_calories: 867, steps: 21575)
 day = Day.new(date: today, meals: meals)
 puts day.summary
-
 
 today = Date.new(2018, 6, 2) # SAT 2 JUN
 add_to_db(
@@ -90,6 +90,7 @@ add_to_db(
   date: today
 )
 meals = Meal.where(created_at: today)
+Meta.create(date: today, garmin_total_calories: 2691, garmin_active_calories: 754, steps: 11242)
 day = Day.new(date: today, meals: meals)
 puts day.summary
 
@@ -129,10 +130,11 @@ add_to_db(
   ingredients: ['Huel,74','Flapjack,0.5', 'Hot choc,14'],
   date: today
 )
-puts Meal.last.summary
 meals = Meal.where(created_at: today)
+Meta.create(date: today, garmin_total_calories: 2821, garmin_active_calories: 884, steps: 18402)
 day = Day.new(date: today, meals: meals)
 puts day.summary
+exit
 
 today = Date.new(2018, 6, 4) # MON 4 JUN
 add_to_db(
