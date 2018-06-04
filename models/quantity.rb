@@ -1,41 +1,42 @@
-class Quantity
-  attr_reader :amount, :ingredient
+class Quantity < Sequel::Model
+  many_to_one :ingredient
 
-  def initialize(ingredient:, amount:)
-    @ingredient = ingredient
-    @amount = amount
+  def to_s
+    "#{quantity} #{ingredient.unit} of #{ingredient.name}"
+  end
 
-    if amount && amount != ingredient.amount
-      @multiplier = amount.to_i.fraction_of ingredient.amount
+  def multiplier
+    @multiplier = 1
+
+    if quantity != ingredient.amount
+      @multiplier = quantity.to_f.fraction_of ingredient.amount
     end
+
+    @multiplier
   end
 
   def calories
-    @ingredient.calories * @multiplier
+    ingredient.calories * multiplier
   end
 
   def carbohydrate
-    @ingredient.carbohydrate * @multiplier
+    ingredient.carbohydrate * multiplier
   end
 
   def sugar
-    @ingredient.sugar * @multiplier
+    ingredient.sugar * multiplier
   end
 
   def fat
-    @ingredient.fat * @multiplier
+    ingredient.fat * multiplier
   end
 
   def fibre
-    @ingredient.fibre * @multiplier
+    ingredient.fibre * multiplier
   end
 
   def protein
-    @ingredient.protein * @multiplier
-  end
-
-  def to_s
-    "#{amount} #{ingredient.unit} of #{ingredient.name}"
+    ingredient.protein * multiplier
   end
 
   def summary
