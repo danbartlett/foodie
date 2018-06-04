@@ -13,7 +13,7 @@ class SummaryTable
     symbol = (meta.garmin_total_calories <=> klass.calories) == -1 ? "+" : "-"
     prefixed_balance = "#{symbol}#{(meta.garmin_total_calories - klass.calories).round}"
     return prefixed_balance.green if symbol == "-"
-    return prefixed_balance.red if symbol == "+"
+    return prefixed_balance.gsub('-','').red if symbol == "+" # <=> Adds a '-' so remove it
   end
 
   def table
