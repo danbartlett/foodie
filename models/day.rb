@@ -17,6 +17,6 @@ class Day
   end
 
   def summary
-    SummaryTable.new(klass: self, title: "Meals for #{date.strftime("%A, %b %d %Y")}").table
+    SummaryTable.new(klass: self, title: "Meals for #{date.strftime("%A, %b %d %Y")}", date: date).table
   end
 end
