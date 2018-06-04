@@ -9,6 +9,9 @@ def add_to_db(name:, ingredients:, date:)
   end
 end
 
+# TRUNCATE ALL DATA!!! All real data is logged below and is recreated on each run
+DB << "TRUNCATE quantities, meals, metas CASCADE"
+
 today = Date.new(2018, 6, 1) # FRI 1 JUN
 add_to_db(
   name: 'Alpro Porridge w/ Banana & Almonds',
