@@ -8,3 +8,8 @@
 * `sequel -m migrations/ postgres://localhost/foodie_development`
 * To reset migrations, delete tables and set `schema_info` to 0, then run the
   above command again
+
+# DB Console
+
+* `sequel postgres://postgres:@localhost/foodie_development`
+* Use DB object like so to retrieve collections: `DB[:meals]`
